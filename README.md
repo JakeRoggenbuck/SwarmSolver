@@ -37,6 +37,7 @@ Or run the whole demo (Z3 baseline, server, dashboard, swarm): `scripts/demo.sh`
 | `swarm-solo` | Baseline: gives the whole graph to Z3 and asks it to prove `chi >= k` |
 | `swarm-load` | Synthetic load: N subscribers and P publishers; reports fan-out and latency |
 | `swarm-tail` | Prints the event log readably (`-from 1 -topics verdicts` replays every verdict) |
+| `swarm-gen` | Generates a new, never-published instance with a planted answer (see [New problems](#new-problems-generated-instances-with-a-known-answer)) |
 | `swarm-gen` | Generates a fresh instance with a planted answer (see *Fresh instances*) |
 
 ## Claim types
@@ -186,7 +187,8 @@ dashed reference line.
 | `dsjc250.5` | 250 | 14 <= chi <= 28 in ~8 s (28 = literature best); Z3 alone can't decide chi >= 14 in 20 s |
 | `dsjc500.5` | 500 | best live demo: both bounds keep moving. 15 <= chi <= 49 after 3 min (literature best 47) |
 | `myciel5..7` | 47-191 | triangle-free: clique bound is 2 but chi is 6-8, so every lower bound step needs Z3 |
-| `queen8_8`, `queen9_9`, `le450_*`, `dsjc125.1/.9` | | more classics |
+| `queen8_8`, `queen9_9`, `le450_*`, `dsjc125.1/.9` | | more classics. `le450_15c` (chi = 15) stalled at 16 colors for 3 min, even with 45 s searches |
+| `generated/swarm250_25_a`, `_b` | 250 | new instances with a planted answer, chi = 25; solved by the swarm in 31 s and 86 s (see [New problems](#new-problems-generated-instances-with-a-known-answer)) |
 | `dsjc1000.5`, `C2000.5`, `flat1000_76_0`, `latin_square_10` | 900-2000 | open benchmarks: chi is not settled, so the swarm is working on unsolved problems |
 | `generated/swarm250_25_a` | 250 | fresh `swarm-gen` instance, never published: chi = 25 by construction |
 
@@ -211,6 +213,140 @@ The `.col` file carries the answer in a comment (`c known: lower=K upper=K`). `s
 reads it and the dashboard shows it as the "known answer (planted)" reference line instead of a
 literature best. The hidden coloring goes to `solutions/<name>.sol`, which agents never see.
 
+## New problems: generated instances with a known answer
+
+The published instances turned out to be either too easy for the swarm or genuinely open, so
+neither measures much. `swarm-gen` makes fresh instances nobody has seen before, each with an
+answer we know by construction:
+
+1. Split n vertices into k hidden color classes of equal size (vertex ids are shuffled).
+2. Add random edges only between different classes. Every pair of classes gets about the same
+   number of edges ("flat"), so vertex degrees give nothing away.
+3. Plant a k-clique by picking one vertex from each class and connecting them.
+
+The hidden classes prove chi <= k and the clique proves chi >= k, so **chi = k exactly**. A new
+seed gives a new graph that has never been published or attempted.
+
+```bash
+./bin/swarm-gen -n 250 -k 25 -p 0.506 -seed 2 -name swarm250_25_a   # writes the instance + hidden solution
+./bin/swarm-gen -n 250 -k 25 -p 0.506 -seed 2 -calibrate 4m          # time 6 parallel tabu searches first
+./bin/swarm-server -graph instances/generated/swarm250_25_a.col
+./bin/swarm-agent -heuristic 12 -budget 30s
+```
+
+The instance goes to `instances/generated/<name>.col`, and its hidden coloring to
+`instances/generated/solutions/<name>.sol`. Agents never see the solution file, because they
+download the graph from `/problem`. The `.col` header carries a line `c known: lower=25 upper=25`.
+The server reads it and the dashboard draws it as the "Known answer (planted)" target line.
+Agents are told the target number, the same way they are told the best known coloring for
+published instances, but not the coloring itself.
+
+### Tuning difficulty
+
+Difficulty comes from how close k is to the number of colors a random graph of that density
+would need anyway. For 250 vertices at edge density about 0.5 that natural number is about 28
+(DSJC250.5 has the same size and density, and its best known coloring uses 28). Measured with
+`-calibrate` (6 parallel tabu searches, fresh start every 2M iterations, seed 1 unless noted):
+
+| n | k | p (between classes) | time to find the hidden k-coloring |
+|---|---|---|---|
+| 250 | 20 | 0.30 / 0.36 / 0.42 | 0s / 0.2s / 0.1s. Far below 28, the hidden coloring stands out |
+| 250 | 24 | 0.50 | 0.4s |
+| 250 | 25 | 0.50 | not solved in 4 min (best: 15 conflicting edges) |
+| 250 | 26 | 0.50 | not solved in 4 min (best: 6 conflicting edges) |
+| 250 | 27 | 0.50 | not solved in 1 min (best: 2 conflicting edges) |
+| 250 | 28 | 0.50 | 7.8s. At the natural color count many valid colorings exist, so one is easy to find |
+| 250 | 25 | 0.53 / 0.56 | 0.2s / 0s |
+
+The hard band is narrow: k = 25–27 at density 0.5, and for k = 25 only p between about 0.50 and
+0.51. Inside it, seed and luck matter as much as p:
+
+| k = 25, p | seed 1 | seed 2 | seed 3 |
+|---|---|---|---|
+| 0.503 | 36s | not solved in 4 min | not solved in 4 min |
+| 0.506 | 18s | 1m51s | not solved in 4 min |
+
+The same graph can take 0.7s in one run and 35.5s in another. Solve time is a first-hit time,
+so one run says little. Compare settings over several seeds and runs.
+
+Two things caught while tuning:
+
+- **Density was coarsely quantized.** With 10 vertices per class there are 100 possible edges
+  between two classes, and rounding made 0.505 and 0.51 produce the identical graph. The
+  generator now rounds up or down at random per pair of classes, so p varies smoothly.
+- **The swarm is not the same as the calibration.** The calibration restarts tabu search from
+  scratch; swarm agents start from the shared best (k+1)-coloring and drop one color class.
+
+### Result: swarm250_25_a
+
+`swarm250_25_a` (n=250, m=15,320, k=25, p=0.506, seed 2) is new: it was generated for this
+test and has never been published. Its answer is chi = 25 by construction. **The swarm solved
+it: 12 heuristic agents (no LLM, `-budget 30s`) proved chi = 25 in 31 seconds.**
+
+| time after start | bounds | how |
+|---|---|---|
+| 1s | 2 <= chi <= 37 | first DSatur colorings |
+| 1s | 25 <= chi <= 35 | clique search finds the planted 25-clique |
+| 1s | 25 <= chi <= 28 | tabu search, several agents |
+| 3s | 25 <= chi <= 27 | heur-06 |
+| 31s | 25 <= chi <= 26 | heur-05 |
+| 31s | **25 <= chi <= 25** | heur-07 finds a 25-coloring; the edge-scan check verifies it; gap 0 |
+
+**Is it an easy problem?** For the swarm, fairly easy: 31 seconds, well short of the 10-minute
+target. It still sits in the hard band. DSatur alone needs 36 colors, and one calibration run of
+6 tabu searches took 1m51s. With one run each, "the swarm was faster" is an observation, not a
+measured speedup.
+
+**What it does and doesn't show:**
+- The lower bound is easy on purpose: the planted 25-clique is found within a second. The work
+  is all on the upper side, going from 28 to 25 colors.
+- This is a benchmark, not a discovery. We built the answer in, so solving it demonstrates the
+  swarm can find a hidden 25-coloring nobody has attempted. It adds no new mathematics.
+- Unknown: whether the 25-coloring found is the planted one or a different valid coloring. The
+  run wasn't recorded with `-log`, so the final coloring wasn't kept. To check next time, run
+  the server with `-log`, then compare `best_coloring` from `/state` with the `.sol` file.
+
+### Result: swarm250_25_b (harder)
+
+`swarm250_25_b` (n=250, m=15,226, k=25, p=0.503, seed 2) is also new. On this exact graph, the
+6-search calibration did **not** find the 25-coloring in 4 minutes (best: 13 conflicting edges).
+**The swarm solved it: same setup (12 heuristic agents, `-budget 30s`), chi = 25 proven in
+86 seconds.**
+
+| time after start | bounds | how |
+|---|---|---|
+| 1s | 25 <= chi <= 28 | planted clique found; tabu search from DSatur colorings |
+| 23s | 25 <= chi <= 27 | |
+| 86s | 25 <= chi <= 26 | heur-07 |
+| 86s | **25 <= chi <= 25** | heur-07 again, the same second: dropped a class from its own 26-coloring and repaired it |
+
+**Easy or hard?** Harder than `_a` (86s vs 31s) and still solved, but still short of the
+10-minute target. This is the one case where the swarm beat the calibration on the same graph.
+A plausible reason is the start: swarm agents begin from the shared best 26-coloring and drop
+one class, while the calibration restarts from scratch. That's one run each, so it's a lead
+worth testing, not a measured result. As with `_a`, it's unknown whether the coloring found is
+the planted one, because the run wasn't recorded with `-log`.
+
+### Summary
+
+| instance | new? | known answer | calibration (6 tabu searches) | swarm (12 agents) | solved? |
+|---|---|---|---|---|---|
+| `swarm250_25_a` | yes | chi = 25 | 1m51s | 31s | yes, gap 0 |
+| `swarm250_25_b` | yes | chi = 25 | not solved in 4 min | 86s | yes, gap 0 |
+
+Both are fresh problems that no one had attempted, both are genuinely hard for a greedy
+algorithm (DSatur needs 35+ colors), and the swarm solved both in under 90 seconds. To reach the
+10-minute target, try other seeds at p = 0.500–0.503, or a larger graph (for example n = 300
+with k near its natural color count), and rerun with `-log` so the result can be compared with
+the planted solution:
+
+```bash
+./bin/swarm-gen -n 250 -k 25 -p 0.500 -seed 3 -calibrate 4m    # check difficulty first
+./bin/swarm-gen -n 250 -k 25 -p 0.500 -seed 3 -name swarm250_25_c
+./bin/swarm-server -graph instances/generated/swarm250_25_c.col -log swarm250_25_c.ndjson
+./bin/swarm-agent -heuristic 12 -budget 30s
+```
+
 ## Changes from design.md
 
 - **Verdict status `skipped`** for claims that can no longer improve a bound (checked at ingest
@@ -224,7 +360,7 @@ literature best. The hidden coloring goes to `solutions/<name>.sol`, which agent
 ## Layout
 
 ```
-cmd/swarm-server  cmd/swarm-agent  cmd/swarm-solo  cmd/swarm-load  cmd/swarm-tail  cmd/swarm-gen
+cmd/swarm-server  cmd/swarm-agent  cmd/swarm-solo  cmd/swarm-load  cmd/swarm-tail  cmd/swarm-gen  cmd/swarm-gen
 internal/bus      ring buffer, atomic head, generation-channel wakeups
 internal/server   sequencer, dedup, parents, state publishing, WS readers, HTTP API, replay
 internal/verify   certificate checks, verifier pool, formula cache
