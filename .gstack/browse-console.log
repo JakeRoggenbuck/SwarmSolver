@@ -1,0 +1,458 @@
+[2026-09-27T22:10:04.894Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&agent=dashboard-qjud' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:16:38.737Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:16:38.959Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=6&agent=dashboard-hv00' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:16.157Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-dogw' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:16.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:16.759Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-obzu' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:17.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:17.960Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-sutr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:18.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:18.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:19.391Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:20.363Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-v28t' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:20.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:21.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:21.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:22.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:23.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:24.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:24.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:25.165Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-scko' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:25.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:26.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:27.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:27.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:28.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:29.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:30.168Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-2mgq' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:30.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:30.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:31.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:32.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:33.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:33.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:34.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:35.170Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-vdg7' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:35.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:36.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:36.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:37.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:38.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:39.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:39.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:40.173Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-ddfr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:40.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:41.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:42.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:42.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:43.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:44.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:45.182Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-lvbi' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:45.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:45.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:46.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:47.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:48.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:48.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:49.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:50.178Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-t5rw' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:50.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:52.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:53.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:54.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:54.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:55.187Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-zlk2' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:55.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:56.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:57.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:57.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:58.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:19:59.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:00.189Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-j9dg' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:00.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:00.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:01.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:02.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:03.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:03.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:04.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:05.189Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-b6kg' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:05.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:06.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:06.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:07.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:08.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:09.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:09.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:10.203Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-0pqx' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:10.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:11.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:12.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:12.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:13.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:14.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:15.219Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-536x' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:15.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:15.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:16.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:17.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:19.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:20.231Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-rhtz' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:20.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:21.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:21.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:22.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:23.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:24.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:24.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:25.289Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-8vf7' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:25.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:26.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:27.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:27.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:28.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:29.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:30.400Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:30.400Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:30.412Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-2ibt' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:31.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:32.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:33.427Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:33.427Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:34.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:35.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:35.580Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-sb3c' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:36.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:36.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:37.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:38.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:39.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:39.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:40.394Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:40.876Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-b0co' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:41.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:42.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:42.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:43.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:44.380Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:45.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:45.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:46.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:47.116Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-agm5' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:47.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:48.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:48.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:49.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:50.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:52.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:53.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:54.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:54.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:54.540Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-vu0n' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:55.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:56.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:57.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:57.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:58.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:20:59.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:00.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:00.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:00.801Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-mmgj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:01.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:02.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:03.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:03.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:04.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:05.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:06.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:06.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:07.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:07.608Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-ddda' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:08.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:09.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:09.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:10.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:11.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:12.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:12.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:13.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:14.391Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:15.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:15.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:15.868Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-eeow' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:16.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:17.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:19.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:20.390Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:21.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:21.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:22.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:23.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:24.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:24.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:25.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:25.381Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-rqz4' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:26.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:27.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:27.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:28.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:29.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:30.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:30.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:31.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:32.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:33.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:33.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:34.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:35.204Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-x094' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:35.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:36.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:36.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:37.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:38.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:39.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:39.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:40.241Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-0k1i' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:40.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:41.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:42.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:42.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:43.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:44.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:45.212Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-fcgo' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:45.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:45.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:46.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:47.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:48.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:48.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:49.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:50.223Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-y0yj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:50.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:51.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:51.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:52.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:53.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:54.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:54.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:55.217Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-hu31' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:55.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:56.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:57.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:57.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:58.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:21:59.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:00.231Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-6qz0' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:00.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:00.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:01.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:02.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:03.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:03.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:04.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:05.227Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-jbr2' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:05.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:06.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:06.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:07.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:08.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:09.410Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:09.410Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:10.334Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-9jqa' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:10.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:11.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:12.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:12.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:13.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:14.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:15.247Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-iv4k' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:15.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:15.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:16.392Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:17.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:18.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:19.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:20.276Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-4xeb' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:20.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:21.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:21.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:22.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:23.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:24.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:24.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:25.324Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-b8c4' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:25.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:26.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:27.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:27.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:28.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:29.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:30.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:30.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:30.396Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-bw58' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:31.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:32.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:33.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:33.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:34.396Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:35.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:35.700Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-yuvs' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:36.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:36.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:37.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:38.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:39.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:39.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:40.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:41.173Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-sdbl' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:41.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:42.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:42.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:43.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:44.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:45.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:45.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:46.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:47.303Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-fd6v' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:47.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:48.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:48.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:49.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:50.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:51.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:52.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:53.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:54.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:54.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:54.471Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-l6nm' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:55.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:56.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:57.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:57.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:58.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:22:59.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:00.391Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:00.391Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:01.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:02.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:02.678Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-22vf' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:03.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:03.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:04.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:05.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:06.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:06.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:07.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:08.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:09.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:09.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:10.016Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-fmwi' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:10.391Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:11.393Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:12.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:12.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:13.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:14.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:15.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:15.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:16.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:17.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:18.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:18.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:18.582Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-imvk' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:19.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:20.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:21.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:21.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:22.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:23.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:24.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:24.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:25.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:26.420Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:27.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:27.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:28.035Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-u2c1' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:28.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:29.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:30.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:30.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:31.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:32.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:33.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:33.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:34.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:35.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:36.398Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:36.398Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:37.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:37.570Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-l78s' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:38.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:39.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:39.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:40.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:41.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:42.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:42.387Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:42.568Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-nfdc' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:43.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:44.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:45.396Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:45.396Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:46.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:47.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:47.571Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-v9oh' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:48.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:48.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:49.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:50.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:51.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:51.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:52.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:52.574Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-owqe' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:53.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:54.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:54.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:55.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:56.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:57.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:57.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:57.575Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-jk8e' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:58.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:23:59.397Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:00.393Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:00.393Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:01.389Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:02.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:02.589Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-sizz' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:03.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:03.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:04.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:05.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:06.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:06.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:07.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:07.594Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-zblj' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:08.388Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:09.404Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:09.404Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:10.383Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:11.386Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:12.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:12.385Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:12.603Z] [error] WebSocket connection to 'ws://localhost:8093/ws?topics=leads,verified,verdicts,state&from=38&agent=dashboard-rnrh' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:13.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:14.382Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:15.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:15.384Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
+[2026-09-27T22:24:16.381Z] [error] Failed to load resource: net::ERR_CONNECTION_REFUSED
