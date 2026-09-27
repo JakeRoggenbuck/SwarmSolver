@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f3f0;
+  --surface-1: #fcfcfb;
+  --surface-2: #f0efec;
+  --border: #e2e0da;
+  --grid: #e8e6e1;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #8a8984;
+  --series-upper: #2a78d6;
+  --series-lower: #eb6834;
+  --gap-fill: rgba(42,120,214,.08);
+  --accent: #4a3aa7;
+  --good: #0ca30c;
+  --warning: #c98500;
+  --critical: #d03b3b;
+  --neutral: #8a8984;
+  --edge: rgba(11,11,11,.022);
+  --sep-edge: #4a3aa7;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111110;
+    --surface-1: #1a1a19;
+    --surface-2: #232321;
+    --border: #2f2f2c;
+    --grid: #2a2a28;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8a8980;
+    --series-upper: #3987e5;
+    --series-lower: #d95926;
+    --gap-fill: rgba(57,135,229,.10);
+    --accent: #9085e9;
+    --good: #0ca30c;
+    --warning: #fab219;
+    --critical: #e66767;
+    --neutral: #8a8980;
+    --edge: rgba(255,255,255,.028);
+    --sep-edge: #9085e9;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110;
+  --surface-1: #1a1a19;
+  --surface-2: #232321;
+  --border: #2f2f2c;
+  --grid: #2a2a28;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #8a8980;
+  --series-upper: #3987e5;
+  --series-lower: #d95926;
+  --gap-fill: rgba(57,135,229,.10);
+  --accent: #9085e9;
+  --good: #0ca30c;
+  --warning: #fab219;
+  --critical: #e66767;
+  --neutral: #8a8980;
+  --edge: rgba(255,255,255,.028);
+  --sep-edge: #9085e9;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text-primary); font: 14px/1.45 var(--sans); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1480px; margin: 0 auto; padding: 20px 16px 40px; }
+header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+header h1 { font-size: 20px; margin: 0; letter-spacing: -.01em; }
+header .sub { color: var(--text-secondary); }
+header .right { margin-left: auto; display: flex; gap: 12px; align-items: center; color: var(--text-secondary); font-size: 13px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; background: var(--neutral); margin-right: 6px; vertical-align: 1px; }
+.dot.live { background: var(--good); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 25%, transparent); }
+button.theme { background: var(--surface-2); color: var(--text-secondary); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; font: inherit; cursor: pointer; }
+
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(12, 1fr); }
+.card { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; min-width: 0; }
+.card h2 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-secondary); margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.card h2 .hint { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--text-muted); margin-left: auto; font-size: 12px; }
+.span-12 { grid-column: span 12; } .span-8 { grid-column: span 8; } .span-7 { grid-column: span 7; }
+.span-5 { grid-column: span 5; } .span-4 { grid-column: span 4; } .span-6 { grid-column: span 6; }
+@media (max-width: 1100px) { .span-8, .span-7, .span-5, .span-4, .span-6 { grid-column: span 12; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(340px, 2fr) repeat(4, minmax(120px, 1fr)); gap: 12px; }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr 1fr; } .hero .main { grid-column: span 2; } }
+.hero .main .label { color: var(--text-secondary); font-size: 13px; }
+.hero .main .big { font: 600 clamp(28px, 2.6vw, 42px)/1.1 var(--mono); letter-spacing: -.02em; margin: 6px 0 4px; white-space: nowrap; }
+.hero .main .big .lo { color: var(--series-lower); } .hero .main .big .up { color: var(--series-upper); }
+.hero .main .big .chi { color: var(--text-secondary); font-weight: 400; }
+.hero .main .meta { color: var(--text-muted); font-size: 12px; }
+.tile .label { color: var(--text-secondary); font-size: 12px; }
+.tile .val { font: 600 26px/1.2 var(--mono); margin-top: 4px; }
+.tile .foot { color: var(--text-muted); font-size: 12px; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.swatch { display: inline-block; width: 10px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+
+/* Charts */
+svg { display: block; width: 100%; overflow: visible; }
+.axis text { fill: var(--text-muted); font: 11px var(--mono); }
+.axis line, .gridline { stroke: var(--grid); stroke-width: 1; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--text-secondary); margin-top: 6px; flex-wrap: wrap; }
+.tooltip { position: fixed; pointer-events: none; background: var(--surface-2); color: var(--text-primary); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; font-size: 12px; box-shadow: 0 6px 24px rgba(0,0,0,.18); z-index: 10; display: none; max-width: 320px; }
+.tooltip .t { color: var(--text-secondary); margin-bottom: 4px; font-family: var(--mono); }
+.tooltip .row { display: flex; gap: 8px; align-items: center; font-family: var(--mono); }
+
+/* Feed */
+.feed { font: 12px/1.5 var(--mono); height: 420px; overflow: hidden; position: relative; }
+.feed .ev { display: grid; grid-template-columns: 58px 92px 1fr; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+.feed .ev .seq { color: var(--text-muted); text-align: right; }
+.feed .ev .who { color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; }
+.feed .ev .what { overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
+.feed .ev .note { color: var(--text-muted); }
+.chip { display: inline-block; font-size: 11px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--border); margin-right: 6px; color: var(--text-secondary); }
+.st-verified { color: var(--good); } .st-refuted { color: var(--critical); } .st-unknown { color: var(--warning); } .st-skipped { color: var(--text-muted); }
+.ev.bounds { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.filters { display: flex; gap: 6px; margin-left: auto; }
+.filters label { font-size: 12px; color: var(--text-secondary); text-transform: none; letter-spacing: 0; font-weight: 400; display: flex; gap: 4px; align-items: center; cursor: pointer; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: right; font-weight: 500; color: var(--text-muted); font-size: 12px; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+td { text-align: right; padding: 4px 6px; border-bottom: 1px solid var(--grid); font-family: var(--mono); }
+th:first-child, td:first-child, th:nth-child(2), td:nth-child(2) { text-align: left; }
+td.model { color: var(--text-muted); font-family: var(--sans); font-size: 12px; }
+.tbl-scroll { max-height: 420px; overflow: auto; }
+
+/* Metrics */
+.kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 12px; }
+.kv .k { color: var(--text-muted); font-size: 12px; }
+.kv .v { font: 600 18px/1.2 var(--mono); }
+.counts { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+.counts div { font-family: var(--mono); font-size: 18px; font-weight: 600; }
+.counts span { display: block; font-family: var(--sans); font-size: 12px; font-weight: 400; color: var(--text-secondary); }
+.bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; gap: 2px; background: var(--surface-2); }
+.bar > div { height: 100%; }
+
+canvas { display: block; width: 100%; }
+.graphwrap { position: relative; }
+.empty { color: var(--text-muted); font-size: 13px; padding: 40px 0; text-align: center; }
+footer { color: var(--text-muted); font-size: 12px; margin-top: 18px; }
+footer code { font-family: var(--mono); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Swarm</h1>
+    <span class="sub" id="problem">connecting…</span>
+    <div class="right">
+      <span><span class="dot" id="livedot"></span><span id="livetxt">offline</span></span>
+      <span id="seq">seq 0</span>
+      <button class="theme" id="theme" title="Toggle theme">theme</button>
+    </div>
+  </header>
+
+  <div class="hero" style="margin-bottom:12px">
+    <div class="card main">
+      <div class="label">Chromatic number, proven interval</div>
+      <div class="big"><span class="lo" id="lo">?</span> <span class="chi">≤ χ(G) ≤</span> <span class="up" id="up">?</span></div>
+      <div class="meta" id="herometa">Every bound here was checked by the harness before anyone built on it.</div>
+    </div>
+    <div class="card tile"><div class="label">Gap</div><div class="val" id="gap">–</div><div class="foot" id="gapfoot">upper − lower</div></div>
+    <div class="card tile"><div class="label"><span class="swatch" style="background:var(--series-upper)"></span>Upper bound (coloring)</div><div class="val" id="upv">–</div><div class="foot" id="upby">–</div></div>
+    <div class="card tile"><div class="label"><span class="swatch" style="background:var(--series-lower)"></span>Lower bound (certificate)</div><div class="val" id="lov">–</div><div class="foot" id="loby">–</div></div>
+    <div class="card tile"><div class="label">Verified separations</div><div class="val" id="sepv">0</div><div class="foot">edges shared across the swarm</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="card span-8">
+      <h2>Gap over time <span class="hint">step lines change only on verified claims</span></h2>
+      <svg id="gapchart" height="300"></svg>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--series-upper)"></span>Upper bound: best verified coloring</span>
+        <span><span class="swatch" style="background:var(--series-lower)"></span>Lower bound: clique or Z3 subgraph certificate</span>
+        <span id="litlegend" style="display:none"><span class="swatch" style="background:var(--text-muted)"></span>Literature best coloring</span>
+      </div>
+    </div>
+    <div class="card span-4">
+      <h2>Verifier <span class="hint" id="engine"></span></h2>
+      <div class="counts">
+        <div id="c-ver">0<span>✓ verified</span></div>
+        <div id="c-ref">0<span>✗ refuted</span></div>
+        <div id="c-unk">0<span>? unknown</span></div>
+        <div id="c-skip">0<span>– skipped</span></div>
+        <div id="c-dup">0<span>≡ duplicates</span></div>
+      </div>
+      <div class="bar" id="vbar"></div>
+      <div class="legend" style="margin-bottom:14px">
+        <span><span class="swatch" style="background:var(--good)"></span>verified</span>
+        <span><span class="swatch" style="background:var(--critical)"></span>refuted</span>
+        <span><span class="swatch" style="background:var(--warning)"></span>unknown</span>
+        <span><span class="swatch" style="background:var(--neutral)"></span>skipped</span>
+      </div>
+      <div class="kv">
+        <div><div class="k">queue</div><div class="v" id="m-queue">0</div></div>
+        <div><div class="k">busy workers</div><div class="v" id="m-busy">0</div></div>
+        <div><div class="k">z3 calls</div><div class="v" id="m-z3">0</div></div>
+        <div><div class="k">cache hits</div><div class="v" id="m-cache">0</div></div>
+        <div><div class="k">leads</div><div class="v" id="m-leads">0</div></div>
+        <div><div class="k">timeout</div><div class="v" id="m-timeout">–</div></div>
+      </div>
+    </div>
+
+    <div class="card span-7">
+      <h2>Live log
+        <span class="filters">
+          <label><input type="checkbox" data-t="leads" checked>leads</label>
+          <label><input type="checkbox" data-t="verdicts" checked>verdicts</label>
+          <label><input type="checkbox" data-t="verified" checked>verified</label>
+          <label><input type="checkbox" data-t="state" checked>state</label>
+          <label><input type="checkbox" id="hidenotes">hide notes</label>
+        </span>
+      </h2>
+      <div class="feed" id="feed"></div>
+    </div>
+    <div class="card span-5">
+      <h2>Throughput <span class="hint">events per second, last 2 min</span></h2>
+      <svg id="tput" height="150"></svg>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--series-upper)"></span>appended to log</span>
+        <span><span class="swatch" style="background:var(--series-lower)"></span>delivered to sockets (fan-out)</span>
+      </div>
+      <div class="kv" style="margin-top:14px">
+        <div><div class="k">clients</div><div class="v" id="m-clients">0</div></div>
+        <div><div class="k">appended/s</div><div class="v" id="m-app">0</div></div>
+        <div><div class="k">delivered/s</div><div class="v" id="m-del">0</div></div>
+        <div><div class="k">frames/s</div><div class="v" id="m-frames">0</div></div>
+        <div><div class="k">out</div><div class="v" id="m-bytes">0</div></div>
+        <div><div class="k">slow-client resyncs</div><div class="v" id="m-resync">0</div></div>
+      </div>
+    </div>
+
+    <div class="card span-6">
+      <h2>Best coloring and shared lemmas <span class="hint">vertices grouped by color class · purple = verified separations · ringed = lower-bound witness</span></h2>
+      <div class="graphwrap"><canvas id="graph" height="440"></canvas></div>
+    </div>
+    <div class="card span-6">
+      <h2>Provenance <span class="hint">which verified insight unlocked which</span></h2>
+      <svg id="dag" height="440"></svg>
+      <div class="legend" id="daglegend"></div>
+    </div>
+
+    <div class="card span-12">
+      <h2>Agents <span class="hint">score = verified + 10 × bound moves + 3 × times cited by others</span></h2>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>#</th><th>agent</th><th>model</th><th>published</th><th>verified</th><th>refuted</th><th>unknown</th><th>bound moves</th><th>cited</th><th>score</th></tr></thead>
+          <tbody id="lb"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <footer>Read-only view of <code>/ws?topics=leads,verified,verdicts,state</code> · <code>/state</code> · <code>/metrics</code> · <code>/problem</code></footer>
+</div>
+<div class="tooltip" id="tip"></div>
+
+<script>
+(() => {
+"use strict";
+const $ = id => document.getElementById(id);
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = n => n >= 1e6 ? (n/1e6).toFixed(2)+"M" : n >= 1e4 ? (n/1e3).toFixed(1)+"k" : Math.round(n).toLocaleString();
+const bytes = n => n >= 1<<20 ? (n/(1<<20)).toFixed(1)+" MB/s" : n >= 1024 ? (n/1024).toFixed(0)+" KB/s" : Math.round(n)+" B/s";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const short = id => id ? id.replace("sha256:", "").slice(0, 8) : "";
+
+// Theme toggle (per-viewer convenience).
+try { const t = localStorage.getItem("swarm-theme"); if (t) document.documentElement.dataset.theme = t; } catch {}
+$("theme").onclick = () => {
+  const cur = document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  const next = cur === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("swarm-theme", next); } catch {}
+  drawAll();
+};
+
+let S = null;               // latest /state snapshot
+let seq = 0;
+let history = [];           // bound points
+let events = [];            // feed ring
+const FEED_MAX = 120;
+let dirty = { feed: true, gap: true, graph: true, dag: true, lb: true };
+const tput = [];            // {t, app, del}
+
+// ---------- Tooltip ----------
+const tip = $("tip");
+function showTip(x, y, html) {
+  tip.innerHTML = html; tip.style.display = "block";
+  const r = tip.getBoundingClientRect();
+  let lx = x + 14, ly = y + 14;
+  if (lx + r.width > innerWidth - 8) lx = x - r.width - 14;
+  if (ly + r.height > innerHeight - 8) ly = y - r.height - 14;
+  tip.style.left = lx + "px"; tip.style.top = ly + "px";
+}
+const hideTip = () => { tip.style.display = "none"; };
+
+// ---------- State ----------
+function applySnapshot(v) {
+  S = v;
+  history = (v.history || []).slice();
+  seq = Math.max(seq, v.seq || 0);
+  const p = v.problem || {};
+  $("problem").textContent = `${p.name}  ·  n=${p.n}  m=${p.m}  density ${(p.density||0).toFixed(3)}`;
+  $("litlegend").style.display = p.known_upper ? "" : "none";
+  dirty.gap = dirty.graph = dirty.dag = dirty.lb = true;
+  renderHero();
+}
+function renderHero() {
+  if (!S) return;
+  $("lo").textContent = S.lower; $("up").textContent = S.upper;
+  $("lov").textContent = S.lower; $("upv").textContent = S.upper;
+  $("gap").textContent = S.upper - S.lower;
+  const p = S.problem || {};
+  $("gapfoot").textContent = p.known_upper ? `literature best coloring: ${p.known_upper}` : "upper − lower";
+  $("upby").textContent = S.upper_agent ? `by ${S.upper_agent} · ${short(S.upper_id)}` : "trivial (n)";
+  const lk = S.lower_kind === "SUBGRAPH_BOUND" ? `Z3 certificate, |S|=${(S.lower_witness||[]).length}` : S.lower_kind === "CLIQUE" ? `clique of ${(S.lower_witness||[]).length}` : "trivial";
+  $("loby").textContent = S.lower_agent ? `by ${S.lower_agent} · ${lk}` : lk;
+  $("sepv").textContent = (S.separations || []).length;
+  const c = S.counts || {};
+  $("c-ver").firstChild.textContent = fmt(c.verified||0);
+  $("c-ref").firstChild.textContent = fmt(c.refuted||0);
+  $("c-unk").firstChild.textContent = fmt(c.unknown||0);
+  $("c-skip").firstChild.textContent = fmt(c.skipped||0);
+  $("c-dup").firstChild.textContent = fmt(c.dups||0);
+  $("m-leads").textContent = fmt(c.leads||0);
+  const tot = (c.verified||0)+(c.refuted||0)+(c.unknown||0)+(c.skipped||0) || 1;
+  $("vbar").innerHTML = [["verified","--good"],["refuted","--critical"],["unknown","--warning"],["skipped","--neutral"]]
+    .filter(([k]) => c[k]).map(([k,v]) => `<div title="${k}: ${c[k]}" style="width:${100*c[k]/tot}%;background:var(${v})"></div>`).join("");
+  const el = S.started_at ? Math.round((Date.now() - S.started_at)/1000) : 0;
+  $("herometa").textContent = `${fmt(c.verified||0)} verified findings · ${(S.leaderboard||[]).length} agents · running ${el >= 3600 ? (el/3600).toFixed(1)+"h" : el >= 60 ? Math.floor(el/60)+"m "+(el%60)+"s" : el+"s"}`;
+}
+
+// ---------- Stream ----------
+let ws, retry = 0;
+function connect() {
+  const proto = location.protocol === "https:" ? "wss" : "ws";
+  const from = Math.max(1, (S ? S.seq : seq) - 150);
+  ws = new WebSocket(`${proto}://${location.host}/ws?topics=leads,verified,verdicts,state&from=${from}&agent=dashboard-${Math.random().toString(36).slice(2,6)}`);
+  ws.onopen = () => { retry = 0; $("livedot").classList.add("live"); $("livetxt").textContent = "live"; };
+  ws.onclose = () => {
+    $("livedot").classList.remove("live"); $("livetxt").textContent = "reconnecting";
+    setTimeout(connect, Math.min(5000, 300 * 2 ** retry++));
+  };
+  ws.onmessage = m => {
+    const lines = m.data.split("\n");
+    for (const line of lines) {
+      if (!line) continue;
+      let e; try { e = JSON.parse(line); } catch { continue; }
+      onEvent(e);
+    }
+  };
+}
+let baseSeq = 0; // events at or below this seq are already reflected in the snapshot
+function onEvent(e) {
+  seq = Math.max(seq, e.seq || 0);
+  if (e.kind === "SNAPSHOT") { applySnapshot(e.state); baseSeq = e.state.seq || 0; return; }
+  if (S && e.seq > baseSeq) {
+    const c = S.counts;
+    if (e.topic === "leads") c.leads++;
+    if (e.kind === "VERDICT" && e.verdict) {
+      const st = e.verdict.status;
+      if (st in c) c[st]++;
+    }
+    if (e.kind === "BOUNDS" && e.bounds) {
+      const b = e.bounds;
+      S.upper = b.upper; S.lower = b.lower;
+      S.upper_agent = b.upper_agent; S.lower_agent = b.lower_agent; S.lower_kind = b.lower_kind;
+      history.push({ ts: e.ts, seq: e.seq, upper: b.upper, lower: b.lower });
+      dirty.gap = true;
+      refreshState(); // pull witness, coloring, findings
+    }
+    if (e.topic === "verified" && e.kind === "SEPARATION" && e.claim) {
+      S.separations.push({ id: e.id, u: e.claim.u, v: e.claim.v, k: e.claim.k, size: (e.claim.S||[]).length, agent: e.agent });
+      dirty.graph = true;
+    }
+    if (e.topic === "verified") {
+      S.findings.push({ id: e.id, seq: e.seq, kind: e.kind, k: e.claim ? e.claim.k : 0, agent: e.agent, ts: e.ts, parents: e.parents, size: e.claim && e.claim.S ? e.claim.S.length : 0 });
+      if (S.findings.length > 400) S.findings.shift();
+      dirty.dag = true;
+    }
+  }
+  events.push(e);
+  if (events.length > 2000) events = events.slice(-FEED_MAX * 2);
+  dirty.feed = true;
+}
+
+// ---------- Feed ----------
+const shown = { leads: true, verdicts: true, verified: true, state: true };
+document.querySelectorAll(".filters input[data-t]").forEach(cb => cb.onchange = () => { shown[cb.dataset.t] = cb.checked; dirty.feed = true; });
+$("hidenotes").onchange = () => { dirty.feed = true; };
+function describe(e) {
+  const c = e.claim || {};
+  switch (e.kind) {
+    case "COLORING": return `<span class="chip">COLORING</span>χ ≤ ${c.k}`;
+    case "CLIQUE": return `<span class="chip">CLIQUE</span>χ ≥ ${c.k} (${(c.S||[]).length} vertices)`;
+    case "SUBGRAPH_BOUND": return `<span class="chip">SUBGRAPH_BOUND</span>χ ≥ ${c.k} from |S|=${(c.S||[]).length}`;
+    case "SEPARATION": return `<span class="chip">SEPARATION</span>c(${c.u}) ≠ c(${c.v}) for k ≤ ${c.k}, |S|=${(c.S||[]).length}`;
+    case "MERGE": return `<span class="chip">MERGE</span>c(${c.u}) = c(${c.v})?`;
+    case "NOTE": return `<span class="chip">NOTE</span><span class="note">${esc(e.note)}</span>`;
+    case "VERDICT": {
+      const v = e.verdict || {};
+      const icon = { verified: "✓", refuted: "✗", unknown: "?", skipped: "–" }[v.status] || "";
+      return `<span class="st-${v.status}">${icon} ${v.status}</span> ${esc(v.kind)} k=${v.k} <span class="note">${v.engine ? v.engine + " " + (v.ms||0).toFixed(v.ms < 10 ? 1 : 0) + "ms" : ""}${v.core ? " · core " + v.core : ""} · ${esc(v.reason || "")}</span>`;
+    }
+    case "BOUNDS": { const b = e.bounds; return `<b>bounds now ${b.lower} ≤ χ ≤ ${b.upper}</b>`; }
+  }
+  return esc(e.kind);
+}
+function renderFeed() {
+  const hide = $("hidenotes").checked;
+  const out = [];
+  for (let i = events.length - 1; i >= 0 && out.length < FEED_MAX; i--) {
+    const e = events[i];
+    if (!shown[e.topic]) continue;
+    if (hide && e.kind === "NOTE") continue;
+    const topic = e.topic === "verified" ? `<span class="st-verified">verified</span> ` : "";
+    const note = e.note && e.kind !== "NOTE" ? ` <span class="note">— ${esc(e.note)}</span>` : "";
+    out.push(`<div class="ev ${e.kind === "BOUNDS" ? "bounds" : ""}"><span class="seq">${e.seq}</span><span class="who">${esc(e.agent || "")}</span><span class="what">${topic}${describe(e)}${note}</span></div>`);
+  }
+  $("feed").innerHTML = out.join("") || `<div class="empty">Waiting for agents…</div>`;
+}
+
+// ---------- Gap chart ----------
+function renderGap() {
+  const svg = $("gapchart");
+  const W = svg.clientWidth || 800, H = 300, m = { l: 36, r: 16, t: 12, b: 26 };
+  if (!S || history.length === 0) { svg.innerHTML = ""; return; }
+  const p = S.problem || {};
+  const t0 = history[0].ts, t1 = Math.max(Date.now(), t0 + 1000);
+  const pts = history.concat([{ ts: t1, upper: S.upper, lower: S.lower }]);
+  // Y domain: focus on the interesting range, not 0..n.
+  const ups = pts.filter(q => q.upper < p.n).map(q => q.upper);
+  let yMax = Math.max(...(ups.length ? ups : [S.upper]), p.known_upper || 0) + 1;
+  let yMin = Math.max(0, Math.min(...pts.map(q => q.lower)) - 1);
+  if (yMax - yMin < 4) yMax = yMin + 4;
+  const x = t => m.l + (W - m.l - m.r) * (t - t0) / (t1 - t0);
+  const y = v => m.t + (H - m.t - m.b) * (1 - (Math.min(v, yMax) - yMin) / (yMax - yMin));
+  const step = key => pts.map((q, i) => (i ? `H${x(q.ts).toFixed(1)}V${y(q[key]).toFixed(1)}` : `M${x(q.ts).toFixed(1)},${y(q[key]).toFixed(1)}`)).join("");
+  // Gap band between the step lines.
+  let band = `M${x(pts[0].ts)},${y(pts[0].upper)}`;
+  for (let i = 1; i < pts.length; i++) band += `H${x(pts[i].ts)}V${y(pts[i].upper)}`;
+  band += `V${y(pts[pts.length - 1].lower)}`;
+  for (let i = pts.length - 1; i >= 1; i--) band += `V${y(pts[i-1].lower)}H${x(pts[i-1].ts)}`;
+  band += "Z";
+  let g = "";
+  const ticks = []; for (let v = Math.ceil(yMin); v <= yMax; v += Math.max(1, Math.round((yMax - yMin) / 6))) ticks.push(v);
+  for (const v of ticks) g += `<line class="gridline" x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"/><text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+  const dur = (t1 - t0) / 1000, nt = 5;
+  for (let i = 0; i <= nt; i++) {
+    const t = t0 + (t1 - t0) * i / nt, s = (t - t0) / 1000;
+    g += `<text x="${x(t)}" y="${H - 6}" text-anchor="${i === 0 ? "start" : i === nt ? "end" : "middle"}">${dur > 180 ? (s/60).toFixed(1) + "m" : s.toFixed(0) + "s"}</text>`;
+  }
+  let lit = "";
+  if (p.known_upper && p.known_upper >= yMin && p.known_upper <= yMax)
+    lit = `<line x1="${m.l}" x2="${W - m.r}" y1="${y(p.known_upper)}" y2="${y(p.known_upper)}" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+  const last = pts[pts.length - 1];
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = `<g class="axis">${g}</g>
+    <path d="${band}" fill="var(--gap-fill)"/>
+    ${lit}
+    <path d="${step("upper")}" fill="none" stroke="var(--series-upper)" stroke-width="2" stroke-linejoin="round"/>
+    <path d="${step("lower")}" fill="none" stroke="var(--series-lower)" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="${x(last.ts)}" cy="${y(last.upper)}" r="4" fill="var(--series-upper)" stroke="var(--surface-1)" stroke-width="2"/>
+    <circle cx="${x(last.ts)}" cy="${y(last.lower)}" r="4" fill="var(--series-lower)" stroke="var(--surface-1)" stroke-width="2"/>
+    <text x="${x(last.ts) - 8}" y="${y(last.upper) - 8}" text-anchor="end" fill="var(--text-primary)" font-size="12" font-family="var(--mono)">≤ ${last.upper}</text>
+    <text x="${x(last.ts) - 8}" y="${y(last.lower) + 18}" text-anchor="end" fill="var(--text-primary)" font-size="12" font-family="var(--mono)">≥ ${last.lower}</text>
+    <line id="xh" y1="${m.t}" y2="${H - m.b}" stroke="var(--text-muted)" stroke-width="1" style="display:none"/>
+    <rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent" id="gaphit"/>`;
+  const hit = $("gaphit"), xh = $("xh");
+  hit.onmousemove = ev => {
+    const r = svg.getBoundingClientRect();
+    const px = (ev.clientX - r.left) * (W / r.width);
+    const t = t0 + (px - m.l) / (W - m.l - m.r) * (t1 - t0);
+    let q = pts[0]; for (const pt of pts) if (pt.ts <= t) q = pt;
+    xh.setAttribute("x1", px); xh.setAttribute("x2", px); xh.style.display = "";
+    showTip(ev.clientX, ev.clientY, `<div class="t">t = ${((t - t0)/1000).toFixed(1)}s</div>
+      <div class="row"><span class="swatch" style="background:var(--series-upper)"></span>upper ${q.upper}</div>
+      <div class="row"><span class="swatch" style="background:var(--series-lower)"></span>lower ${q.lower}</div>
+      <div class="row">gap ${q.upper - q.lower}</div>`);
+  };
+  hit.onmouseleave = () => { xh.style.display = "none"; hideTip(); };
+}
+
+// ---------- Throughput ----------
+function renderTput() {
+  const svg = $("tput");
+  const W = svg.clientWidth || 500, H = 150, m = { l: 44, r: 8, t: 8, b: 18 };
+  if (tput.length < 2) { svg.innerHTML = ""; return; }
+  const maxV = Math.max(10, ...tput.map(d => Math.max(d.app, d.del))) * 1.1;
+  const x = i => m.l + (W - m.l - m.r) * i / 119;
+  const off = 120 - tput.length;
+  const y = v => m.t + (H - m.t - m.b) * (1 - v / maxV);
+  const line = k => tput.map((d, i) => `${i ? "L" : "M"}${x(i + off).toFixed(1)},${y(d[k]).toFixed(1)}`).join("");
+  let g = "";
+  for (const f of [0, .5, 1]) g += `<line class="gridline" x1="${m.l}" x2="${W - m.r}" y1="${y(maxV * f / 1.1)}" y2="${y(maxV * f / 1.1)}"/><text x="${m.l - 6}" y="${y(maxV * f / 1.1) + 4}" text-anchor="end">${fmt(maxV * f / 1.1)}</text>`;
+  g += `<text x="${m.l}" y="${H - 4}">−2m</text><text x="${W - m.r}" y="${H - 4}" text-anchor="end">now</text>`;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = `<g class="axis">${g}</g>
+    <path d="${line("del")}" fill="none" stroke="var(--series-lower)" stroke-width="2"/>
+    <path d="${line("app")}" fill="none" stroke="var(--series-upper)" stroke-width="2"/>
+    <rect x="${m.l}" y="${m.t}" width="${W - m.l - m.r}" height="${H - m.t - m.b}" fill="transparent" id="tphit"/>`;
+  $("tphit").onmousemove = ev => {
+    const r = svg.getBoundingClientRect();
+    const px = (ev.clientX - r.left) * (W / r.width);
+    const i = Math.round((px - m.l) / (W - m.l - m.r) * 119) - off;
+    const d = tput[Math.max(0, Math.min(tput.length - 1, i))];
+    showTip(ev.clientX, ev.clientY, `<div class="row"><span class="swatch" style="background:var(--series-upper)"></span>appended ${fmt(d.app)}/s</div><div class="row"><span class="swatch" style="background:var(--series-lower)"></span>delivered ${fmt(d.del)}/s</div>`);
+  };
+  $("tphit").onmouseleave = hideTip;
+}
+
+// ---------- Graph ----------
+let problemEdges = null, nodePos = [];
+async function loadProblem() {
+  try {
+    const r = await fetch("/problem?format=dimacs");
+    const txt = await r.text();
+    problemEdges = [];
+    for (const line of txt.split("\n")) if (line[0] === "e") { const [, a, b] = line.split(" "); problemEdges.push([+a - 1, +b - 1]); }
+    dirty.graph = true;
+  } catch {}
+}
+function classColor(c, k) {
+  // Illustrative hues for color classes (the coloring itself, not a data series).
+  const h = (c * 137.508) % 360;
+  const dark = (document.documentElement.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
+  return `hsl(${h.toFixed(0)} ${dark ? 65 : 60}% ${dark ? 60 : 48}%)`;
+}
+function renderGraph() {
+  const cv = $("graph");
+  const dpr = devicePixelRatio || 1;
+  const W = cv.clientWidth || 600, H = 440;
+  cv.width = W * dpr; cv.height = H * dpr;
+  const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, W, H);
+  if (!S || !S.problem) return;
+  const n = S.problem.n, col = S.best_coloring || [];
+  const order = [...Array(n).keys()];
+  if (col.length === n) order.sort((a, b) => col[a] - col[b] || a - b);
+  const cx = W / 2, cy = H / 2, R = Math.min(W, H) / 2 - 22;
+  nodePos = new Array(n);
+  // Leave a small angular gap between color classes.
+  const k = col.length === n ? Math.max(...col) + 1 : 1;
+  const slots = n + k * 1.5;
+  let pos = 0, prev = -1;
+  order.forEach(v => {
+    const c = col.length === n ? col[v] : 0;
+    if (c !== prev) { if (prev >= 0) pos += 1.5; prev = c; }
+    const a = -Math.PI / 2 + 2 * Math.PI * pos / slots;
+    nodePos[v] = [cx + R * Math.cos(a), cy + R * Math.sin(a), c];
+    pos++;
+  });
+  if (problemEdges && problemEdges.length < 60000) {
+    ctx.strokeStyle = css("--edge"); ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (const [a, b] of problemEdges) { const p = nodePos[a], q = nodePos[b]; if (!p || !q) continue; ctx.moveTo(p[0], p[1]); ctx.quadraticCurveTo(cx, cy, q[0], q[1]); }
+    ctx.stroke();
+  }
+  // Separations: the lemmas the swarm shares.
+  ctx.strokeStyle = css("--sep-edge"); ctx.globalAlpha = .75; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (const s of S.separations || []) { const p = nodePos[s.u], q = nodePos[s.v]; if (!p || !q) continue; ctx.moveTo(p[0], p[1]); ctx.quadraticCurveTo(cx, cy, q[0], q[1]); }
+  ctx.stroke(); ctx.globalAlpha = 1;
+  const wit = new Set(S.lower_witness || []);
+  const r = n > 300 ? 2.5 : 4;
+  for (let v = 0; v < n; v++) {
+    const p = nodePos[v];
+    ctx.beginPath(); ctx.arc(p[0], p[1], r, 0, 2 * Math.PI);
+    ctx.fillStyle = col.length === n ? classColor(p[2], k) : css("--neutral");
+    ctx.fill();
+    ctx.lineWidth = 1.5; ctx.strokeStyle = css("--surface-1"); ctx.stroke();
+    if (wit.has(v)) { ctx.beginPath(); ctx.arc(p[0], p[1], r + 3, 0, 2 * Math.PI); ctx.strokeStyle = css("--series-lower"); ctx.lineWidth = 2; ctx.stroke(); }
+  }
+  ctx.fillStyle = css("--text-secondary"); ctx.font = "12px " + css("--mono"); ctx.textAlign = "center";
+  ctx.fillText(col.length === n ? `${k} color classes` : "no coloring yet", cx, cy - 4);
+  ctx.fillStyle = css("--text-muted");
+  ctx.fillText(`${(S.separations||[]).length} separations · witness ${wit.size}`, cx, cy + 14);
+}
+$("graph").onmousemove = ev => {
+  if (!nodePos.length || !S) return;
+  const r = $("graph").getBoundingClientRect();
+  const x = ev.clientX - r.left, y = ev.clientY - r.top;
+  let best = -1, bd = 100;
+  nodePos.forEach((p, v) => { const d = (p[0] - x) ** 2 + (p[1] - y) ** 2; if (d < bd) { bd = d; best = v; } });
+  if (best < 0) return hideTip();
+  const seps = (S.separations || []).filter(s => s.u === best || s.v === best);
+  const deg = problemEdges ? problemEdges.filter(e => e[0] === best || e[1] === best).length : "?";
+  showTip(ev.clientX, ev.clientY, `<div class="t">vertex ${best}</div><div class="row">degree ${deg}</div>` +
+    (S.best_coloring ? `<div class="row">color ${S.best_coloring[best]}</div>` : "") +
+    `<div class="row">${seps.length} separation${seps.length === 1 ? "" : "s"}${seps.length ? ": " + seps.slice(0, 4).map(s => `≠${s.u === best ? s.v : s.u}`).join(" ") : ""}</div>` +
+    ((S.lower_witness || []).includes(best) ? `<div class="row" style="color:var(--series-lower)">in lower-bound witness</div>` : ""));
+};
+$("graph").onmouseleave = hideTip;
+
+// ---------- Provenance DAG ----------
+const KIND_LANE = { COLORING: 0, SEPARATION: 1, SUBGRAPH_BOUND: 2, CLIQUE: 3 };
+const KIND_COLOR = { COLORING: "--series-upper", SEPARATION: "--accent", SUBGRAPH_BOUND: "--series-lower", CLIQUE: "--warning" };
+function renderDag() {
+  const svg = $("dag");
+  const W = svg.clientWidth || 600, H = 440, m = { l: 110, r: 14, t: 16, b: 20 };
+  $("daglegend").innerHTML = Object.entries(KIND_COLOR).map(([k, c]) => `<span><span class="swatch" style="background:var(${c});height:8px;width:8px;border-radius:50%"></span>${k}</span>`).join("") +
+    `<span><span class="swatch" style="background:var(--text-muted)"></span>built on</span><span>larger ring = moved a bound</span>`;
+  if (!S || !S.findings || !S.findings.length) { svg.innerHTML = `<text x="${W/2}" y="${H/2}" text-anchor="middle" fill="var(--text-muted)" font-size="13">No verified findings yet</text>`; return; }
+  const all = S.findings;
+  const byId = new Map(all.map(f => [f.id, f]));
+  // Keep the interesting part: bound moves, anything cited, anything with parents. Cap for legibility.
+  const cited = new Set(); all.forEach(f => (f.parents || []).forEach(p => cited.add(p)));
+  let nodes = all.filter(f => f.improve || cited.has(f.id) || (f.parents && f.parents.length));
+  nodes = nodes.slice(-140);
+  const keep = new Set(nodes.map(f => f.id));
+  const s0 = nodes.length ? nodes[0].seq : 0, s1 = nodes.length ? nodes[nodes.length - 1].seq : 1;
+  const lanes = 4, laneH = (H - m.t - m.b) / lanes;
+  const pos = new Map();
+  const jitterFor = id => (parseInt(id.slice(7, 11), 16) % 1000) / 1000;
+  nodes.forEach(f => {
+    const lane = KIND_LANE[f.kind] ?? 0;
+    const x = m.l + (W - m.l - m.r) * (s1 === s0 ? .5 : (f.seq - s0) / (s1 - s0));
+    const y = m.t + laneH * lane + laneH * (.2 + .6 * jitterFor(f.id));
+    pos.set(f.id, [x, y, f]);
+  });
+  let edges = "", dots = "", lab = "";
+  ["COLORING  χ ≤ k", "SEPARATION", "SUBGRAPH_BOUND", "CLIQUE  χ ≥ k"].forEach((t, i) => {
+    lab += `<text x="0" y="${m.t + laneH * (i + .5) + 4}" fill="var(--text-muted)" font-size="11" font-family="var(--mono)">${t}</text>`;
+    if (i) lab += `<line class="gridline" x1="0" x2="${W}" y1="${m.t + laneH * i}" y2="${m.t + laneH * i}"/>`;
+  });
+  nodes.forEach(f => {
+    const [x, y] = pos.get(f.id);
+    (f.parents || []).forEach(pid => {
+      const p = pos.get(pid); if (!p) return;
+      const mx = (p[0] + x) / 2;
+      edges += `<path d="M${p[0]},${p[1]} C${mx},${p[1]} ${mx},${y} ${x},${y}" fill="none" stroke="var(--text-muted)" stroke-opacity=".35" stroke-width="1"/>`;
+    });
+  });
+  nodes.forEach(f => {
+    const [x, y] = pos.get(f.id);
+    const c = `var(${KIND_COLOR[f.kind] || "--neutral"})`;
+    dots += `<circle cx="${x}" cy="${y}" r="${f.improve ? 6 : 4}" fill="${c}" stroke="var(--surface-1)" stroke-width="2" data-id="${f.id}"/>`;
+    if (f.improve) dots += `<circle cx="${x}" cy="${y}" r="9" fill="none" stroke="${c}" stroke-width="1.5" pointer-events="none"/>`;
+  });
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svg.innerHTML = `<g class="axis">${lab}</g><g>${edges}</g><g>${dots}</g>`;
+  svg.querySelectorAll("circle[data-id]").forEach(el => {
+    el.style.cursor = "default";
+    el.onmousemove = ev => {
+      const f = byId.get(el.dataset.id);
+      const kids = all.filter(g => (g.parents || []).includes(f.id)).length;
+      showTip(ev.clientX, ev.clientY, `<div class="t">${f.kind} · ${short(f.id)}</div>
+        <div class="row">k = ${f.k}${f.size ? " · |S| = " + f.size : ""}</div>
+        <div class="row">by ${esc(f.agent)} · seq ${f.seq}</div>
+        <div class="row">built on ${(f.parents || []).length} · used by ${kids}</div>
+        ${f.improve ? `<div class="row" style="color:var(--good)">moved a bound</div>` : ""}`);
+    };
+    el.onmouseleave = hideTip;
+  });
+}
+
+// ---------- Leaderboard ----------
+function renderLb() {
+  if (!S) return;
+  const rows = (S.leaderboard || []).filter(a => !a.agent.startsWith("load-") && !a.agent.startsWith("dashboard"));
+  $("lb").innerHTML = rows.map((a, i) => `<tr><td>${i + 1}</td><td>${esc(a.agent)}</td><td class="model">${esc(a.model || "")}</td><td>${a.published}</td><td class="st-verified">${a.verified}</td><td class="st-refuted">${a.refuted}</td><td>${a.unknown}</td><td>${a.improved}</td><td>${a.cited}</td><td><b>${a.score}</b></td></tr>`).join("")
+    || `<tr><td colspan="10" class="empty">No agents yet</td></tr>`;
+}
+
+// ---------- Polling ----------
+async function refreshState() {
+  try { const r = await fetch("/state"); const v = await r.json(); const keepSeq = seq; applySnapshot(v); seq = Math.max(seq, keepSeq); } catch {}
+}
+async function pollMetrics() {
+  try {
+    const m = await (await fetch("/metrics")).json();
+    const r = m.rates || {};
+    tput.push({ app: r.append_per_sec || 0, del: r.delivered_per_sec || 0 });
+    if (tput.length > 120) tput.shift();
+    $("m-clients").textContent = m.clients; $("m-app").textContent = fmt(r.append_per_sec || 0);
+    $("m-del").textContent = fmt(r.delivered_per_sec || 0); $("m-frames").textContent = fmt(r.frames_per_sec || 0);
+    $("m-bytes").textContent = bytes(r.bytes_out_per_sec || 0); $("m-resync").textContent = m.resyncs;
+    const v = m.verifier || {};
+    $("m-queue").textContent = v.queue; $("m-busy").textContent = `${v.busy}/${v.workers}`;
+    $("m-z3").textContent = fmt(v.z3_calls + v.native_calls); $("m-cache").textContent = fmt(v.cache_hits);
+    $("m-timeout").textContent = v.timeout_s + "s";
+    $("engine").textContent = v.engine === "z3" ? "Z3 SMT harness" : "native solver (z3 not installed)";
+    renderTput();
+  } catch {}
+}
+
+function drawAll() { dirty = { feed: true, gap: true, graph: true, dag: true, lb: true }; }
+function frame() {
+  $("seq").textContent = "seq " + seq.toLocaleString();
+  if (S) renderHero();
+  if (dirty.feed) { renderFeed(); dirty.feed = false; }
+  if (dirty.gap) { renderGap(); dirty.gap = false; }
+  if (dirty.graph) { renderGraph(); dirty.graph = false; }
+  if (dirty.dag) { renderDag(); dirty.dag = false; }
+  if (dirty.lb) { renderLb(); dirty.lb = false; }
+}
+setInterval(frame, 250);
+setInterval(() => { dirty.gap = true; }, 1000);          // keep the time axis moving
+setInterval(pollMetrics, 1000);
+setInterval(() => refreshState(), 3000);                 // leaderboard, findings, coloring
+addEventListener("resize", drawAll);
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+loadProblem();
+refreshState().then(connect);
+pollMetrics();
+})();
+</script>
+</body>
+</html>
