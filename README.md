@@ -37,6 +37,7 @@ Or run the whole demo (Z3 baseline, server, dashboard, swarm): `scripts/demo.sh`
 | `swarm-solo` | Baseline: gives the whole graph to Z3 and asks it to prove `chi >= k` |
 | `swarm-load` | Synthetic load: N subscribers and P publishers; reports fan-out and latency |
 | `swarm-tail` | Prints the event log readably (`-from 1 -topics verdicts` replays every verdict) |
+| `swarm-gen` | Generates a fresh instance with a planted answer (see *Fresh instances*) |
 
 ## Claim types
 
@@ -101,6 +102,9 @@ agents --WS--> ingest chan --> [sequencer goroutine] --> ring []*Entry (2^16, at
   and content-addressed (`sha256:...`). Two agents that find the same claim cost one check.
 - **Persistence**: `-log events.ndjson` appends every encoded envelope. On restart the server
   replays it into the ring and the fold.
+- **Restarts**: a client that reconnects with a `from` beyond the current head (it saw a previous
+  run) gets a snapshot and resyncs, just like a lapped reader. The dashboard re-reads `/state`
+  before reconnecting and, if `started_at` changed, drops the old run's feed and reloads the problem.
 
 ### API
 
@@ -183,6 +187,29 @@ dashed reference line.
 | `dsjc500.5` | 500 | best live demo: both bounds keep moving. 15 <= chi <= 49 after 3 min (literature best 47) |
 | `myciel5..7` | 47-191 | triangle-free: clique bound is 2 but chi is 6-8, so every lower bound step needs Z3 |
 | `queen8_8`, `queen9_9`, `le450_*`, `dsjc125.1/.9` | | more classics |
+| `dsjc1000.5`, `C2000.5`, `flat1000_76_0`, `latin_square_10` | 900-2000 | open benchmarks: chi is not settled, so the swarm is working on unsolved problems |
+| `generated/swarm250_25_a` | 250 | fresh `swarm-gen` instance, never published: chi = 25 by construction |
+
+### Fresh instances
+
+Published benchmarks may already be in a model's training data. `swarm-gen` builds new instances
+that nobody has attempted, but whose answer is still known:
+
+```bash
+./bin/swarm-gen -n 250 -k 20 -p 0.42 -seed 7                 # writes instances/generated/planted250_20_s7.col
+./bin/swarm-gen -n 250 -k 20 -p 0.42 -seed 7 -calibrate 2m   # time parallel tabu search on it instead
+```
+
+It splits the vertices into k shuffled hidden color classes, adds "flat" random edges between
+classes (every pair of classes gets the same edge count, so degrees give nothing away), and plants
+one k-clique. The hidden classes prove chi <= k and the clique proves chi >= k. The density `p`
+sets the difficulty: near the density where a random graph would need about k colors on its own,
+the hidden coloring is hard to find. `-calibrate` reports how long tabu search needs, so you can
+pick a `p` that is hard but reachable.
+
+The `.col` file carries the answer in a comment (`c known: lower=K upper=K`). `swarm-server`
+reads it and the dashboard shows it as the "known answer (planted)" reference line instead of a
+literature best. The hidden coloring goes to `solutions/<name>.sol`, which agents never see.
 
 ## Changes from design.md
 
@@ -197,12 +224,12 @@ dashed reference line.
 ## Layout
 
 ```
-cmd/swarm-server  cmd/swarm-agent  cmd/swarm-solo  cmd/swarm-load  cmd/swarm-tail
+cmd/swarm-server  cmd/swarm-agent  cmd/swarm-solo  cmd/swarm-load  cmd/swarm-tail  cmd/swarm-gen
 internal/bus      ring buffer, atomic head, generation-channel wakeups
 internal/server   sequencer, dedup, parents, state publishing, WS readers, HTTP API, replay
 internal/verify   certificate checks, verifier pool, formula cache
 internal/smt      SMT-LIB generation and the z3 runner
-internal/graph    DIMACS, bitsets, induced subgraphs + contraction, k-core, DSatur,
+internal/graph    DIMACS (with comments), bitsets, induced subgraphs + contraction, k-core, DSatur,
                   exact DSatur branch-and-bound, tabucol, clique search
 internal/state    fold over verified events -> immutable View snapshots
 internal/agent    agent loop, digest, move executors, Claude planner
