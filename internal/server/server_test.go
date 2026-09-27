@@ -164,14 +164,18 @@ func TestSeparationParentsAndResync(t *testing.T) {
 	// A bound on {0,1,2} alone is only a path (2-colorable) -> needs the separation edge.
 	// k=3 bound needs level-2 separations: the server attaches it as a parent automatically.
 	a.send(proto.Envelope{Kind: proto.KindSubgraphBound, Claim: &proto.Claim{K: 3, S: []int{0, 1, 2}}})
-	evs = w.until(func(e *proto.Envelope) bool { return e.Topic == proto.TopicVerified && e.Kind == proto.KindSubgraphBound })
+	evs = w.until(func(e *proto.Envelope) bool {
+		return e.Topic == proto.TopicVerified && e.Kind == proto.KindSubgraphBound
+	})
 	got := evs[len(evs)-1]
 	if len(got.Parents) != 1 || got.Parents[0] != sepID {
 		t.Fatalf("parents = %v, want [%s]", got.Parents, sepID)
 	}
 	// Citing an unverified parent is rejected.
 	a.send(proto.Envelope{Kind: proto.KindSubgraphBound, Parents: []string{"sha256:nope"}, Claim: &proto.Claim{K: 4, S: []int{0, 1, 2, 3}}})
-	evs = w.until(func(e *proto.Envelope) bool { return e.Kind == proto.KindVerdict && e.Verdict.Status == proto.StatusUnknown })
+	evs = w.until(func(e *proto.Envelope) bool {
+		return e.Kind == proto.KindVerdict && e.Verdict.Status == proto.StatusUnknown
+	})
 
 	// Resync: a reader asking for an evicted seq gets a snapshot, not an error.
 	for i := 0; i < 40; i++ {

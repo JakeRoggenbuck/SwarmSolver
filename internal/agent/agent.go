@@ -422,7 +422,7 @@ func (a *Agent) digest(v view) string {
 	fmt.Fprintf(&b, "Turn %d. You are %s. Strategy: %s.\n", a.turn, a.cfg.Name, a.cfg.Strategy)
 	fmt.Fprintf(&b, "Proven bounds: %d <= chi(G) <= %d (gap %d).", v.Lower, v.Upper, v.Upper-v.Lower)
 	if v.KnownUp > 0 {
-		fmt.Fprintf(&b, " Literature best coloring: %d.", v.KnownUp)
+		fmt.Fprintf(&b, " Best known coloring (target): %d.", v.KnownUp)
 	}
 	b.WriteString("\n")
 	if len(v.Best) == a.G.N {
@@ -509,4 +509,3 @@ func (a *Agent) Stats() (published, verified int) {
 	defer a.mu.Unlock()
 	return a.published, a.verified
 }
-

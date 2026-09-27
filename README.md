@@ -178,9 +178,9 @@ dashed reference line.
 
 | instance | n | notes |
 |---|---|---|
-| `dsjc125.5` | 125 | default. Upper reaches 17 (literature best) in seconds; lower bound climbs from the clique bound 10 |
-| `dsjc250.5` | 250 | harder; best known coloring 28, clique 12, so there is a large gap for both sides |
-| `dsjc500.5` | 500 | best known 47 |
+| `dsjc125.5` | 125 | default. 16 heuristic agents: 13 <= chi <= 17 in ~16 s (17 = literature best) |
+| `dsjc250.5` | 250 | 14 <= chi <= 28 in ~8 s (28 = literature best); Z3 alone can't decide chi >= 14 in 20 s |
+| `dsjc500.5` | 500 | best live demo: both bounds keep moving. 15 <= chi <= 49 after 3 min (literature best 47) |
 | `myciel5..7` | 47-191 | triangle-free: clique bound is 2 but chi is 6-8, so every lower bound step needs Z3 |
 | `queen8_8`, `queen9_9`, `le450_*`, `dsjc125.1/.9` | | more classics |
 

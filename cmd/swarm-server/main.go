@@ -3,6 +3,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"runtime"
@@ -65,6 +66,15 @@ func main() {
 	p := state.Problem{Name: g.Name, N: g.N, M: g.M, Density: g.Density()}
 	if k, ok := known[strings.ToLower(g.Name)]; ok {
 		p.KnownLower, p.KnownUpper = k[0], k[1]
+		p.Note = "best known coloring from the literature"
+	}
+	// Generated instances (swarm-gen) carry their planted answer: "c known: lower=K upper=K".
+	for _, c := range g.Comments {
+		var lo, up int
+		if n, _ := fmt.Sscanf(c, "known: lower=%d upper=%d", &lo, &up); n == 2 {
+			p.KnownLower, p.KnownUpper = lo, up
+			p.Note = fmt.Sprintf("generated instance with a planted answer: chi = %d", up)
+		}
 	}
 	s, err := server.New(g, p, server.Config{
 		RingSize: *ring, Workers: *workers, Z3: z3, SolverTimeout: *timeout,

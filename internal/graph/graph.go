@@ -16,8 +16,9 @@ import (
 // Graph is an undirected simple graph on vertices 0..N-1. Adjacency is kept
 // both as bitsets (O(1) edge test, fast set intersection) and as lists.
 type Graph struct {
-	Name string
-	N    int
+	Name     string
+	Comments []string // DIMACS "c" lines, without the prefix
+	N        int
 	M    int
 	Adj  [][]int
 	bits []Bitset
@@ -28,9 +29,9 @@ type Bitset []uint64
 
 func NewBitset(n int) Bitset { return make(Bitset, (n+63)/64) }
 
-func (b Bitset) Set(i int)        { b[i>>6] |= 1 << (uint(i) & 63) }
-func (b Bitset) Clear(i int)      { b[i>>6] &^= 1 << (uint(i) & 63) }
-func (b Bitset) Has(i int) bool   { return b[i>>6]&(1<<(uint(i)&63)) != 0 }
+func (b Bitset) Set(i int)      { b[i>>6] |= 1 << (uint(i) & 63) }
+func (b Bitset) Clear(i int)    { b[i>>6] &^= 1 << (uint(i) & 63) }
+func (b Bitset) Has(i int) bool { return b[i>>6]&(1<<(uint(i)&63)) != 0 }
 func (b Bitset) Count() int {
 	c := 0
 	for _, w := range b {
@@ -77,8 +78,8 @@ func (g *Graph) AddEdge(u, v int) bool {
 }
 
 func (g *Graph) HasEdge(u, v int) bool { return g.bits[u].Has(v) }
-func (g *Graph) Row(u int) Bitset       { return g.bits[u] }
-func (g *Graph) Degree(u int) int       { return len(g.Adj[u]) }
+func (g *Graph) Row(u int) Bitset      { return g.bits[u] }
+func (g *Graph) Degree(u int) int      { return len(g.Adj[u]) }
 
 // Clone deep-copies the graph so callers can add derived edges (verified separations).
 func (g *Graph) Clone() *Graph {
@@ -117,6 +118,7 @@ func ParseDIMACS(name string, r io.Reader) (*Graph, error) {
 	sc.Buffer(make([]byte, 1<<20), 1<<24)
 	n := -1
 	var edges [][2]int
+	var comments []string
 	for sc.Scan() {
 		line := strings.TrimSpace(sc.Text())
 		if line == "" {
@@ -124,6 +126,8 @@ func ParseDIMACS(name string, r io.Reader) (*Graph, error) {
 		}
 		f := strings.Fields(line)
 		switch f[0] {
+		case "c":
+			comments = append(comments, strings.TrimSpace(strings.TrimPrefix(line, "c")))
 		case "p":
 			if len(f) < 4 {
 				return nil, fmt.Errorf("bad p line %q", line)
@@ -151,7 +155,9 @@ func ParseDIMACS(name string, r io.Reader) (*Graph, error) {
 	if n < 0 {
 		return nil, fmt.Errorf("no p line")
 	}
-	return New(name, n, edges), nil
+	g := New(name, n, edges)
+	g.Comments = comments
+	return g, nil
 }
 
 func LoadDIMACS(path string) (*Graph, error) {
