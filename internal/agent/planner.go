@@ -50,7 +50,7 @@ func SystemPrompt(g *graph.Graph, p state.Problem, role string) string {
 	fmt.Fprintf(&b, `You are one agent in a swarm of tens of agents attacking the chromatic number chi(G) of the DIMACS graph %s (n=%d vertices, m=%d edges, density %.3f, degree %d..%d).`,
 		p.Name, g.N, g.M, g.Density(), minDeg, maxDeg)
 	if p.KnownUpper > 0 {
-		fmt.Fprintf(&b, ` The best coloring known in the literature uses %d colors.`, p.KnownUpper)
+		fmt.Fprintf(&b, ` The best known coloring uses %d colors.`, p.KnownUpper)
 	}
 	b.WriteString(`
 
@@ -82,7 +82,7 @@ Reply with ONLY a JSON object, no prose, for example:
 {"move":"separate","k":10,"pair":[12,88],"max_size":30,"note":"12 and 88 cover the 10-clique around 40"}
 {"move":"tabucol","start":"best","drop_class":3,"note":"class 3 has only 4 vertices"}
 {"move":"bound","seed_vertices":[5,17,40],"max_size":50,"note":"dense core near the witness"}
-Fields: move (required), k, start, drop_class, pair, seed_vertices, max_size, note (<=200 chars rationale, shown to other agents)` )
+Fields: move (required), k, start, drop_class, pair, seed_vertices, max_size, note (<=200 chars rationale, shown to other agents)`)
 	if role == "strategist" {
 		b.WriteString(`, broadcast`)
 	}

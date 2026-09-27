@@ -183,7 +183,7 @@ footer code { font-family: var(--mono); }
       <div class="legend">
         <span><span class="swatch" style="background:var(--series-upper)"></span>Upper bound: best verified coloring</span>
         <span><span class="swatch" style="background:var(--series-lower)"></span>Lower bound: clique or Z3 subgraph certificate</span>
-        <span id="litlegend" style="display:none"><span class="swatch" style="background:var(--text-muted)"></span>Literature best coloring</span>
+        <span id="litlegend" style="display:none"><span class="swatch" style="background:var(--text-muted)"></span><span id="littext">Literature best coloring</span></span>
       </div>
     </div>
     <div class="card span-4">
@@ -289,6 +289,7 @@ let S = null;               // latest /state snapshot
 let seq = 0;
 let history = [];           // bound points
 let events = [];            // feed ring
+let baseSeq = 0;            // events at or below this seq are already reflected in the snapshot
 const FEED_MAX = 120;
 let dirty = { feed: true, gap: true, graph: true, dag: true, lb: true };
 const tput = [];            // {t, app, del}
@@ -307,6 +308,11 @@ const hideTip = () => { tip.style.display = "none"; };
 
 // ---------- State ----------
 function applySnapshot(v) {
+  if (S && v.started_at !== S.started_at) {
+    // The server restarted: this is a new run, so drop everything from the old one.
+    events = []; seq = 0; baseSeq = 0; tput.length = 0; dirty.feed = true;
+    loadProblem();
+  }
   S = v;
   history = (v.history || []).slice();
   seq = Math.max(seq, v.seq || 0);
@@ -322,7 +328,10 @@ function renderHero() {
   $("lov").textContent = S.lower; $("upv").textContent = S.upper;
   $("gap").textContent = S.upper - S.lower;
   const p = S.problem || {};
-  $("gapfoot").textContent = p.known_upper ? `literature best coloring: ${p.known_upper}` : "upper − lower";
+  const planted = p.known_lower && p.known_lower === p.known_upper && (p.note || "").startsWith("generated");
+  $("gapfoot").textContent = !p.known_upper ? "upper − lower"
+    : planted ? `known answer: χ = ${p.known_upper}` : `literature best coloring: ${p.known_upper}`;
+  $("littext").textContent = planted ? "Known answer (planted)" : "Literature best coloring";
   $("upby").textContent = S.upper_agent ? `by ${S.upper_agent} · ${short(S.upper_id)}` : "trivial (n)";
   const lk = S.lower_kind === "SUBGRAPH_BOUND" ? `Z3 certificate, |S|=${(S.lower_witness||[]).length}` : S.lower_kind === "CLIQUE" ? `clique of ${(S.lower_witness||[]).length}` : "trivial";
   $("loby").textContent = S.lower_agent ? `by ${S.lower_agent} · ${lk}` : lk;
@@ -350,7 +359,8 @@ function connect() {
   ws.onopen = () => { retry = 0; $("livedot").classList.add("live"); $("livetxt").textContent = "live"; };
   ws.onclose = () => {
     $("livedot").classList.remove("live"); $("livetxt").textContent = "reconnecting";
-    setTimeout(connect, Math.min(5000, 300 * 2 ** retry++));
+    // Re-read /state first so a restarted server is detected and `from` is valid.
+    setTimeout(() => refreshState().then(connect), Math.min(5000, 300 * 2 ** retry++));
   };
   ws.onmessage = m => {
     const lines = m.data.split("\n");
@@ -361,7 +371,6 @@ function connect() {
     }
   };
 }
-let baseSeq = 0; // events at or below this seq are already reflected in the snapshot
 function onEvent(e) {
   seq = Math.max(seq, e.seq || 0);
   if (e.kind === "SNAPSHOT") { applySnapshot(e.state); baseSeq = e.state.seq || 0; return; }
@@ -675,7 +684,7 @@ function renderLb() {
 
 // ---------- Polling ----------
 async function refreshState() {
-  try { const r = await fetch("/state"); const v = await r.json(); const keepSeq = seq; applySnapshot(v); seq = Math.max(seq, keepSeq); } catch {}
+  try { const r = await fetch("/state"); applySnapshot(await r.json()); } catch {}
 }
 async function pollMetrics() {
   try {

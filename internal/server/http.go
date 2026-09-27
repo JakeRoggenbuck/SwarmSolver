@@ -167,7 +167,8 @@ func (s *Server) serveWS(w http.ResponseWriter, r *http.Request) {
 			from = 1
 		}
 		cursor = from
-		if cursor < s.Ring.Oldest() {
+		// Evicted, or ahead of the log (a client from before a restart): resync via snapshot.
+		if cursor < s.Ring.Oldest() || cursor > s.Ring.Head()+1 {
 			sendSnap = true
 			cursor = 0 // resolved to snapshot seq below
 		}
